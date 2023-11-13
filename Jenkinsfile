@@ -1,29 +1,24 @@
 pipeline {
-    
 	agent any
-/*	
 	tools {
         maven "MAVEN3"
         jdk "Oraclejdk8"
-
     }
-*/	
     environment {
-        Snap_Repo = vprofile-snapshot
+        SNAP_REPO = vprofile-snapshot
         NEXUS_USER = 'admin'
         NEXUS_PASS = '123456'
         RELEASE_REPO = 'vprofile-release'
         CENTRAL_REPO = 'vprofile-central'
-        NEXUSIP = "172.31.23.109:8081"
-        NEXUSSPORT = '8081'
+        NEXUSIP = '172.31.23.109'
+        NEXUS_SPORT = '8081'
         NEXUS_GRP_REPO = 'vpro-maven-group'
         NEXUS_LOGIN = 'login'
     }
     stages{
-        
         stage('BUILD'){
             steps {
-                sh 'mvn -s settings.xml-DskipTests install'
+                sh 'mvn -s settings.xml -DskipTests install'
             }
             post {
                 success {
