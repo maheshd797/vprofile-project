@@ -3,24 +3,27 @@ pipeline {
 	agent any
 /*	
 	tools {
-        maven "maven3"
+        maven "MAVEN3"
+        jdk "Oraclejdk8"
+
     }
 */	
     environment {
-        NEXUS_VERSION = "nexus3"
-        NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "172.31.40.209:8081"
-        NEXUS_REPOSITORY = "vprofile-release"
-	NEXUS_REPOGRP_ID    = "vprofile-grp-repo"
-        NEXUS_CREDENTIAL_ID = "nexuslogin"
-        ARTVERSION = "${env.BUILD_ID}"
+        Snap_Repo = vprofile-snapshot
+        NEXUS_USER = 'admin'
+        NEXUS_PASS = '123456'
+        RELEASE_REPO = 'vprofile-release'
+        CENTRAL_REPO = 'vprofile-central'
+        NEXUSIP = "172.31.23.109:8081"
+        NEXUSSPORT = '8081'
+        NEXUS_GRP_REPO = 'vpro-maven-group'
+        NEXUS_LOGIN = 'login'
     }
-	
     stages{
         
         stage('BUILD'){
             steps {
-                sh 'mvn clean install -DskipTests'
+                sh 'mvn -s settings.xml-DskipTests install'
             }
             post {
                 success {
