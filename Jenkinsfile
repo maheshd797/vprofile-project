@@ -14,7 +14,8 @@ pipeline {
         NEXUS_REPOSITORY = "vprofile-release"
 	NEXUS_REPO_ID    = "vprofile-release"
         NEXUS_CREDENTIAL_ID = "nexuslogin"
-        ARTVERSION = "${env.BUILD_ID}"
+        SONARSERVER = 'sonarserver'
+	SONARSCANNER = 'sonarscanner'
     }
 	
     stages{
